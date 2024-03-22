@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Item } from 'src/app/interfaces/iItem';
 
 @Component({
@@ -6,13 +6,19 @@ import { Item } from 'src/app/interfaces/iItem';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent implements OnInit, OnChanges {
   @Input() item!: Item
   // faPen = faPen;
   // faTrash = faTrash
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log('onInit')
+  }
+
+  ngOnChanges() {
+    console.log('Onchanges')
+  }
 
 }
