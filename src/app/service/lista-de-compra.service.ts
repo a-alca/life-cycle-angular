@@ -1,4 +1,5 @@
-import { Item } from 'src/app/interfaces/iItem';
+import { ItemComponent } from './../components/item/item.component';
+import { Item } from './../interfaces/iItem';
 import { Injectable, NgModule } from '@angular/core';
 
 @Injectable({
@@ -49,5 +50,16 @@ export class ListaDeCompraService {
   addItemNaLista(nomeDoItem: string) {
     const item = this.criarItem(nomeDoItem);
     this.listaDeCompra.push(item);
+  }
+
+  editarItemDaLista(itemAntigo: Item, nomeEditadoDoItem: string) {
+    const ItemEditado : Item = {
+      id: itemAntigo.id,
+      nome: nomeEditadoDoItem,
+      data: itemAntigo.data,
+      comprado: itemAntigo.comprado
+    }
+    const id = itemAntigo.id;
+    this.listaDeCompra.splice(Number(id)-1, 1, ItemEditado);
   }
 }
