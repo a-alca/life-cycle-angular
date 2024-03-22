@@ -1,5 +1,5 @@
 import { Item } from 'src/app/interfaces/iItem';
-import { Injectable } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +33,21 @@ export class ListaDeCompraService {
 
   getListaDeCompra(){
     return this.listaDeCompra;
+  }
+
+  criarItem(nomeDoItem: string) {
+    const id = this.listaDeCompra.length + 1;
+    const item : Item = {
+      id: id,
+      nome: nomeDoItem,
+      data: new Date().toLocaleString('pt-BR'),
+      comprado: false
+    }
+    return item;
+  }
+
+  addItemNaLista(nomeDoItem: string) {
+    const item = this.criarItem(nomeDoItem);
+    this.listaDeCompra.push(item);
   }
 }
